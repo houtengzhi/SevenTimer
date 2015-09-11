@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#99CCFF">
+
+        <com.latitude.seventimer.util.ClearEditText
+            android:id="@+id/input_address"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:background="@drawable/input_address"
+            android:layout_marginStart="8dp"
+            android:hint="@string/input_hint" />
+
+        <Button
+            android:id="@+id/find"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:background="@drawable/find_selector" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/address_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:divider="#00000000"
+        android:dividerHeight="10dp" >
+
+    </ListView>
+
+</LinearLayout>

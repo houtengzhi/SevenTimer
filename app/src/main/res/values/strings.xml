@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">SevenTimer</string>
+    <string name="input_hint">输入地址</string>
+    <string name="tips">无可用的位置提供器</string>
+
+    <string name="date">日期</string>
+    <string name="hour">本地区时</string>
+    <string name= "astro_cloud">全天云量</string>
+    <string name="astro_seeing">大气视宁度</string>
+    <string name="astro_transparency">大气透明度</string>
+    <string name="temp">地面气温℃</string>
+    <string name="astro_rh">相对湿度</string>
+    <string name="astro_rainsnow">降雨降雪</string>
+    <string name="astro_unstable">不稳定预警</string>
+    <string name="astro_wind">大风预警</string>
+
+    <string name="googleNeg">http://maps.googleapis.com/maps/api/geocode/json?latlng=</string>
+</resources>
