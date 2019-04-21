@@ -1,4 +1,4 @@
-package com.latitude.seventimer.ui;
+package com.latitude.seventimer.ui.weather;
 
 import com.latitude.seventimer.base.BaseContract;
 import com.latitude.seventimer.model.Address;

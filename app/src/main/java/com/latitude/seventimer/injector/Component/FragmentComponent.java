@@ -6,7 +6,7 @@ import android.content.Context;
 import com.latitude.seventimer.injector.module.FragmentModule;
 import com.latitude.seventimer.injector.qualifier.ContextLife;
 import com.latitude.seventimer.injector.scope.PerFragment;
-import com.latitude.seventimer.ui.WeatherFragment;
+import com.latitude.seventimer.ui.weather.WeatherFragment;
 
 import dagger.Component;
 

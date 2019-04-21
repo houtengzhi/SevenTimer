@@ -1,15 +1,13 @@
-package com.latitude.seventimer.ui;
+package com.latitude.seventimer.ui.weather;
 
 import com.latitude.seventimer.base.RxPresenter;
 
 import com.latitude.seventimer.model.Address;
 import com.latitude.seventimer.model.AstroWeatherCluster;
 import com.latitude.seventimer.model.IDataHelper;
-import com.latitude.seventimer.ui.WeatherContract;
 
 import javax.inject.Inject;
 
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;

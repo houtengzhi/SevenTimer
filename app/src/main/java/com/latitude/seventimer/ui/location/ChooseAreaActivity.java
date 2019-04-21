@@ -1,4 +1,4 @@
-package com.latitude.seventimer.ui.weather;
+package com.latitude.seventimer.ui.location;
 
 import android.Manifest;
 import android.app.Activity;

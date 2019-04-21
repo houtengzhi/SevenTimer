@@ -16,7 +16,7 @@
             android:layout_gravity="center"
             android:background="@drawable/input_address"
             android:layout_marginStart="8dp"
-            android:hint="@string/input_hint" />
+            android:hint="@string/input_address" />
 
         <Button
             android:id="@+id/find"

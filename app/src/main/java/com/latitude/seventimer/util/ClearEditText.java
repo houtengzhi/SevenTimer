@@ -3,19 +3,19 @@ package com.latitude.seventimer.util;
 import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.EditText;
 
 import com.latitude.seventimer.R;
 
 /**
  * Created by yechy on 2015/9/7.
  */
-public class ClearEditText extends EditText implements View.OnFocusChangeListener,
+public class ClearEditText extends AppCompatEditText implements View.OnFocusChangeListener,
         TextWatcher {
     //EditText右侧的删除按钮
     private Drawable mClearDrawable;

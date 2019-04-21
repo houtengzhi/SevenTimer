@@ -1,4 +1,4 @@
-package com.latitude.seventimer.ui;
+package com.latitude.seventimer.ui.weather;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;

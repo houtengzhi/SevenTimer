@@ -1,4 +1,4 @@
-package com.latitude.seventimer.ui;
+package com.latitude.seventimer.ui.weather;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -16,7 +16,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.latitude.seventimer.R;
-import com.latitude.seventimer.base.BaseFragment;
 import com.latitude.seventimer.base.BaseRVFragment;
 import com.latitude.seventimer.model.Address;
 import com.latitude.seventimer.model.AstroWeatherCluster;
