@@ -1,0 +1,26 @@
+ext {
+
+    android = [
+            compileSdkVersion: 21,
+            buildToolsVersion: '25.0.3',
+            minSdkVersion: 17,
+            targetSdkVersion: 21
+    ]
+
+    dependencies = [
+            'constraint' : 'com.android.support.constraint:constraint-layout:1.1.3',
+
+            //net
+            'retrofit' : 'com.squareup.retrofit2:retrofit:2.1.0',
+            'okhttp' : 'com.squareup.okhttp3:okhttp:3.9.0',
+            'logging-interceptor' : 'com.squareup.okhttp3:logging-interceptor:3.9.0',
+
+            //rx
+            'rxpermission' : 'com.github.tbruyelle:rxpermissions:0.10.2',
+
+            //mta
+            'mta' : 'com.qq.mta:mta:3.4.7-release',
+            'mid' : 'com.tencent.mid:mid:4.06-Release',
+
+    ]
+}

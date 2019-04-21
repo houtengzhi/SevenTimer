@@ -17,6 +17,11 @@ public class Address implements Serializable {
 
     }
 
+    public Address(float latitude, float longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
     public Address(String address, int imageId, float latitude, float longitude) {
         this.address = address;
         this.imageId = imageId;
@@ -38,5 +43,21 @@ public class Address implements Serializable {
 
     public float getLongitude() {
         return longitude;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setImageId(int imageId) {
+        this.imageId = imageId;
+    }
+
+    public void setLatitude(float latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(float longitude) {
+        this.longitude = longitude;
     }
 }

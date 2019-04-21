@@ -1,12 +1,13 @@
 package com.latitude.seventimer.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by yechy on 2015/9/6.
  */
 public class AstroWeatherCluster {
-    private ArrayList<AstroWeather> astroWeatherList = new ArrayList<AstroWeather>();
+    private List<AstroWeather> astroWeatherList = new ArrayList<>();
     private int timeZone;
     private String updateTime;
 
@@ -14,13 +15,13 @@ public class AstroWeatherCluster {
 
     }
 
-    public AstroWeatherCluster(ArrayList<AstroWeather> astroWeatherList, int timeZone, String updateTime) {
+    public AstroWeatherCluster(List<AstroWeather> astroWeatherList, int timeZone, String updateTime) {
         this.astroWeatherList = astroWeatherList;
         this.timeZone = timeZone;
         this.updateTime = updateTime;
     }
 
-    public ArrayList<AstroWeather> getList() {
+    public List<AstroWeather> getList() {
         return astroWeatherList;
     }
 

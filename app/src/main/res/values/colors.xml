@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="mxBg1">#F0F2F5</color>
+    <color name="mxBlue">#5392FF</color>
+    <color name="mxRed">#DB4646</color>
+    <color name="mxGreen">#40AD75</color>
+    <color name="mxYellow">#FFD417</color>
+    <color name="mxDarkYellow">#FF9F04</color>
+    <color name="mxOrange">#FF8D5A</color>
+
+    <!-- Grey colors -->
+    <color name="mxGrey90">#1F2126</color>
+    <color name="mxGrey60">#606369</color>
+    <color name="mxGrey40">#8D9199</color>
+    <color name="mxGrey20">#BCC2CC</color>
+    <color name="mxGrey08">#DDE2EB</color>
+    <color name="mxGrey04">#F0F2F5</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="mxCommon10">#F0F0F5</color>
+    <color name="mxCommon7">#F3F2F5</color>
+    <color name="mxCommon2">#333333</color>
+    <color name="mxCommon2_50">#7f333333</color>
+    <color name="mxCommon1_50">#7f000000</color>
+    <color name="mxCommon1_75">#bf000000</color>
+
+</resources>

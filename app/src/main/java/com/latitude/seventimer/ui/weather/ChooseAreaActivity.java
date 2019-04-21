@@ -1,14 +1,17 @@
-package com.latitude.seventimer.activity;
+package com.latitude.seventimer.ui.weather;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -23,17 +26,10 @@ import com.latitude.seventimer.R;
 import com.latitude.seventimer.model.Address;
 import com.latitude.seventimer.util.AddressAdapter;
 import com.latitude.seventimer.util.ClearEditText;
-import com.latitude.seventimer.util.HttpCallbackListener;
-import com.latitude.seventimer.util.HttpUtil;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
 /**
  * Created by yechy on 2015/9/7.
@@ -102,7 +98,6 @@ public class ChooseAreaActivity extends Activity {
         });
 
 
-
         //输入地址查询
         inputAddress = (ClearEditText) findViewById(R.id.input_address);
         findButton = (Button) findViewById(R.id.find);
@@ -119,47 +114,7 @@ public class ChooseAreaActivity extends Activity {
                             url.append("http://maps.googleapis.com/maps/api/geocode/json?address=");
                             url.append(content);
                             url.append("&sensor=false");
-                            HttpUtil.sendHttpRequest(url.toString(), new HttpCallbackListener() {
 
-                                @Override
-                                public void onFinish(String response, float latitude, float longitude) {
-                                    // TODO 自动生成的方法存根
-
-                                }
-
-                                @Override
-                                public void onFinish(String response) {
-                                    try {
-                                        JSONObject jsonObject = new JSONObject(response);
-                                        JSONArray resultArray = jsonObject.getJSONArray("results");
-                                        if (resultArray.length() > 0) {
-                                            JSONObject subObject = resultArray.getJSONObject(0);
-                                            String address_name = subObject.getString("formatted_address");
-                                            StringTokenizer tokenizer = new StringTokenizer(address_name);
-                                            address_name = tokenizer.nextToken();
-                                            JSONObject geometryObject = subObject.getJSONObject("geometry");
-                                            JSONObject locationObject = geometryObject.getJSONObject("location");
-                                            float latitude = (float) locationObject.getDouble("lat");
-                                            float longitude = (float) locationObject.getDouble("lng");
-                                            Address inputLocation = new Address(address_name, R.drawable.weather1,
-                                                    latitude, longitude);
-                                            Message message = new Message();
-                                            message.what = UPDATE_INPUTLOCATION;
-                                            message.obj = inputLocation;
-                                            handler.sendMessage(message);
-                                        }
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-
-                                }
-
-                                @Override
-                                public void onError(Exception e) {
-                                    // TODO 自动生成的方法存根
-
-                                }
-                            });
                         }
                         break;
                     default:
@@ -174,10 +129,10 @@ public class ChooseAreaActivity extends Activity {
 
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        switch(item.getItemId()) {
+        switch (item.getItemId()) {
             case 1:
                 int position = (int) menuInfo.position;
-                if (position > 0 ) {
+                if (position > 0) {
                     addressList.remove(position);
                     addressNum = addressNum - 1;
                     adapter.notifyDataSetChanged();
@@ -198,8 +153,8 @@ public class ChooseAreaActivity extends Activity {
         Address firstAddress = new Address();
         addressList.add(firstAddress);
 
-        Log.d("ye","addressList size1 = "+addressList.size() );
-        Log.d("ye", "addressNum1 is "+addressNum);
+        Log.d("ye", "addressList size1 = " + addressList.size());
+        Log.d("ye", "addressNum1 is " + addressNum);
         //获取当前位置
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         //获取所有可用的位置提供器
@@ -207,10 +162,20 @@ public class ChooseAreaActivity extends Activity {
         if (providerList.contains(LocationManager.GPS_PROVIDER)) {
             provider = LocationManager.GPS_PROVIDER;
         } else if (providerList.contains(LocationManager.NETWORK_PROVIDER)) {
-            provider= LocationManager.NETWORK_PROVIDER;
+            provider = LocationManager.NETWORK_PROVIDER;
         } else {
             //当没有可用的位置提供器时，弹出Toast
             Toast.makeText(this, R.string.tips, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
             return;
         }
         Location location = locationManager.getLastKnownLocation(provider);
@@ -222,42 +187,7 @@ public class ChooseAreaActivity extends Activity {
         url.append(location.getLongitude());
         url.append("&sensor=false");
 
-        HttpUtil.sendHttpRequest(url.toString(), (float) location.getLatitude(),
-                (float) location.getLongitude(), new HttpCallbackListener() {
 
-                    @Override
-                    public void onFinish(String response, float latitude, float longitude) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            JSONArray resultArray = jsonObject.getJSONArray("results");
-                            if (resultArray.length() > 0) {
-                                JSONObject subObject = resultArray.getJSONObject(0);
-                                String address_name = subObject.getString("formatted_address");
-                                StringTokenizer tokenizer = new StringTokenizer(address_name);
-                                address_name = tokenizer.nextToken();
-                                Address myLocation = new Address(address_name, R.drawable.weather1,
-                                        latitude, longitude);
-                                Message message = new Message();
-                                message.what = UPDATE_CURRENTLOCATION;
-                                message.obj = myLocation;
-
-                                handler.sendMessage(message);
-                            }
-                        } catch (JSONException e) {
-                            // TODO 自动生成的 catch 块
-                            e.printStackTrace();
-                        }
-                    }
-                    @Override
-                    public void onError(Exception e) {
-                        // TODO 自动生成的方法存根
-                    }
-                    @Override
-                    public void onFinish(String response) {
-                        // TODO 自动生成的方法存根
-
-                    }
-                });
 
         //读取预存的地址记录
         SharedPreferences pref;
