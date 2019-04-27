@@ -19,7 +19,7 @@ android {
             localProperties.load(inputStream)
         }
         String ak = localProperties.getProperty('BAIDU_MAP_AK')
-        manifestPlaceholders = [BAIDU_MAP_AK : ak]
+        manifestPlaceholders = ['BAIDU_MAP_AK' : ak]
     }
     buildTypes {
         release {
