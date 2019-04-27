@@ -23,7 +23,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.latitude.seventimer.R;
-import com.latitude.seventimer.model.Address;
+import com.latitude.seventimer.model.WeatherLocation;
 import com.latitude.seventimer.util.AddressAdapter;
 import com.latitude.seventimer.util.ClearEditText;
 
@@ -39,7 +39,7 @@ public class ChooseAreaActivity extends Activity {
     private ClearEditText inputAddress;
     private ListView listView;
 
-    private static List<Address> addressList = new ArrayList<Address>();
+    private static List<WeatherLocation> addressList = new ArrayList<WeatherLocation>();
     private LocationManager locationManager;
     private String provider;
     private static AddressAdapter adapter;
@@ -72,7 +72,7 @@ public class ChooseAreaActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Address address = addressList.get(position);
+                WeatherLocation address = addressList.get(position);
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("selected_address", address);
@@ -150,7 +150,7 @@ public class ChooseAreaActivity extends Activity {
         addressNum = 1;
 
 
-        Address firstAddress = new Address();
+        WeatherLocation firstAddress = new WeatherLocation();
         addressList.add(firstAddress);
 
         Log.d("ye", "addressList size1 = " + addressList.size());
@@ -223,13 +223,13 @@ public class ChooseAreaActivity extends Activity {
             if (outer != null) {
                 switch (msg.what) {
                     case UPDATE_CURRENTLOCATION:
-                        Address myLocation = (Address) msg.obj;
+                        WeatherLocation myLocation = (WeatherLocation) msg.obj;
                         //将addressList第一项替换为mylocation
                         addressList.set(0, myLocation);
                         adapter.notifyDataSetChanged();
                         break;
                     case UPDATE_INPUTLOCATION:
-                        Address inputLocation = (Address) msg.obj;
+                        WeatherLocation inputLocation = (WeatherLocation) msg.obj;
                         addressList.add(inputLocation);
                         adapter.notifyDataSetChanged();
                     default:
@@ -239,8 +239,8 @@ public class ChooseAreaActivity extends Activity {
         }
     }
 
-    private Address createAddress(SharedPreferences pref) {
-        Address address = new Address(pref.getString("address", null), pref.getInt("imageId", 0),
+    private WeatherLocation createAddress(SharedPreferences pref) {
+        WeatherLocation address = new WeatherLocation(pref.getString("address", null), pref.getInt("imageId", 0),
                 pref.getFloat("latitude", 0), pref.getFloat("longitute", 0));
         return address;
     }

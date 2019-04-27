@@ -1,7 +1,7 @@
 package com.latitude.seventimer.ui.weather;
 
 import com.latitude.seventimer.base.BaseContract;
-import com.latitude.seventimer.model.Address;
+import com.latitude.seventimer.model.WeatherLocation;
 import com.latitude.seventimer.model.AstroWeatherCluster;
 
 /**
@@ -9,7 +9,7 @@ import com.latitude.seventimer.model.AstroWeatherCluster;
  */
 public interface WeatherContract {
     interface IView extends BaseContract.IView {
-        void refreshLocationInfo(Address address);
+        void refreshLocationInfo(WeatherLocation address);
         void refreshWeather(AstroWeatherCluster cluster);
     }
 

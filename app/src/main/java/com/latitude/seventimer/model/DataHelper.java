@@ -19,7 +19,7 @@ public class DataHelper implements IDataHelper {
     }
 
     @Override
-    public Flowable<Address> fetchLocationInfo(float latitude, float longitude) {
+    public Flowable<WeatherLocation> fetchLocationInfo(float latitude, float longitude) {
         return mHttpHelper.fetchLocationInfo(latitude, longitude);
     }
 

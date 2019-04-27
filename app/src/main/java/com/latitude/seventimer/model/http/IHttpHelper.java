@@ -1,6 +1,6 @@
 package com.latitude.seventimer.model.http;
 
-import com.latitude.seventimer.model.Address;
+import com.latitude.seventimer.model.WeatherLocation;
 import com.latitude.seventimer.model.AstroWeatherCluster;
 
 import io.reactivex.Flowable;
@@ -11,7 +11,7 @@ import io.reactivex.Flowable;
 
 public interface IHttpHelper {
 
-    Flowable<Address> fetchLocationInfo(float latitude, float longitude);
+    Flowable<WeatherLocation> fetchLocationInfo(float latitude, float longitude);
 
     Flowable<AstroWeatherCluster> fetchAstroWeather(float latitude, float longitude);
 }

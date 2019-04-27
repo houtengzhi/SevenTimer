@@ -1,9 +1,7 @@
 package com.latitude.seventimer.util;
 
-import android.os.Message;
-
 import com.latitude.seventimer.R;
-import com.latitude.seventimer.model.Address;
+import com.latitude.seventimer.model.WeatherLocation;
 import com.latitude.seventimer.model.AstroWeather;
 import com.latitude.seventimer.model.AstroWeatherCluster;
 
@@ -26,8 +24,8 @@ import java.util.StringTokenizer;
  */
 public class DataParserUtil {
 
-    public static Address parseLocation(String response, float latitude, float longitude) {
-        Address location = null;
+    public static WeatherLocation parseLocation(String response, float latitude, float longitude) {
+        WeatherLocation location = null;
         try {
             JSONObject jsonObject = new JSONObject(response);
             JSONArray resultArray = jsonObject.getJSONArray("results");
@@ -36,7 +34,7 @@ public class DataParserUtil {
                 String address_name = subObject.getString("formatted_address");
                 StringTokenizer tokenizer = new StringTokenizer(address_name);
                 address_name = tokenizer.nextToken();
-                location = new Address(address_name, R.drawable.weather1,
+                location = new WeatherLocation(address_name, R.drawable.weather1,
                         latitude, longitude);
 
             }

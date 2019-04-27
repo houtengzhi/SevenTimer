@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.latitude.seventimer.R;
 import com.latitude.seventimer.base.BaseRVFragment;
-import com.latitude.seventimer.model.Address;
+import com.latitude.seventimer.model.WeatherLocation;
 import com.latitude.seventimer.model.AstroWeatherCluster;
 
 import java.util.List;
@@ -37,7 +37,7 @@ public class WeatherFragment extends BaseRVFragment<WeatherPresenter> implements
     private String provider;
     private ActionListener mActionListener;
 
-    private Address mSelectedLocation;
+    private WeatherLocation mSelectedLocation;
 
     public interface ActionListener {
         void onBackClicked();
@@ -142,7 +142,7 @@ public class WeatherFragment extends BaseRVFragment<WeatherPresenter> implements
                         if (aBoolean) {
                             @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(provider);
                             if (mSelectedLocation == null) {
-                                mSelectedLocation = new Address((float) location.getLatitude(),
+                                mSelectedLocation = new WeatherLocation((float) location.getLatitude(),
                                         (float) location.getLongitude());
                             } else {
                                 mSelectedLocation.setLatitude((float) location.getLatitude());
@@ -165,7 +165,7 @@ public class WeatherFragment extends BaseRVFragment<WeatherPresenter> implements
     }
 
     @Override
-    public void refreshLocationInfo(Address address) {
+    public void refreshLocationInfo(WeatherLocation address) {
 
     }
 

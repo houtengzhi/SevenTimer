@@ -1,6 +1,6 @@
 package com.latitude.seventimer.model.http;
 
-import com.latitude.seventimer.model.Address;
+import com.latitude.seventimer.model.WeatherLocation;
 import com.latitude.seventimer.model.AstroWeatherCluster;
 import com.latitude.seventimer.model.http.api.SevenTimerApi;
 import com.latitude.seventimer.util.DataParserUtil;
@@ -27,13 +27,13 @@ public class RetrofitHelper implements IHttpHelper {
     }
 
     @Override
-    public Flowable<Address> fetchLocationInfo(final float latitude, final float longitude) {
+    public Flowable<WeatherLocation> fetchLocationInfo(final float latitude, final float longitude) {
         L.d(TAG, "fetchLocationInfo(), latitude:%s, longitude:%s", latitude, longitude);
         String latlng = String.valueOf(latitude) + "," + longitude;
         return mSevenTimerApi.fetchLocationInfo(latlng, String.valueOf(false))
-                .map(new Function<ResponseBody, Address>() {
+                .map(new Function<ResponseBody, WeatherLocation>() {
                     @Override
-                    public Address apply(ResponseBody responseBody) throws Exception {
+                    public WeatherLocation apply(ResponseBody responseBody) throws Exception {
                         try {
                             String response = responseBody.string();
                             return DataParserUtil.parseLocation(response, latitude, longitude);

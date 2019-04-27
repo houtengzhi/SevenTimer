@@ -9,24 +9,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.latitude.seventimer.R;
-import com.latitude.seventimer.model.Address;
+import com.latitude.seventimer.model.WeatherLocation;
 
 import java.util.List;
 
 /**
  * Created by yechy on 2015/9/6.
  */
-public class AddressAdapter extends ArrayAdapter<Address> {
+public class AddressAdapter extends ArrayAdapter<WeatherLocation> {
     private int resourceId;
 
-    public AddressAdapter(Context context, int textViewResourceId, List<Address> objects) {
+    public AddressAdapter(Context context, int textViewResourceId, List<WeatherLocation> objects) {
         super(context, textViewResourceId, objects);
         resourceId = textViewResourceId;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Address address = getItem(position);
+        WeatherLocation address = getItem(position);
         View view;
         if (convertView == null) {
             view = LayoutInflater.from(getContext()).inflate(resourceId, null);

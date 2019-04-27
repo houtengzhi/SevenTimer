@@ -2,7 +2,7 @@ package com.latitude.seventimer.ui.weather;
 
 import com.latitude.seventimer.base.RxPresenter;
 
-import com.latitude.seventimer.model.Address;
+import com.latitude.seventimer.model.WeatherLocation;
 import com.latitude.seventimer.model.AstroWeatherCluster;
 import com.latitude.seventimer.model.IDataHelper;
 
@@ -32,9 +32,9 @@ public class WeatherPresenter extends RxPresenter<WeatherContract.IView>
         Disposable disposable = mDataHelper.fetchLocationInfo(latitude, longitude)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Address>() {
+                .subscribe(new Consumer<WeatherLocation>() {
                     @Override
-                    public void accept(Address address) throws Exception {
+                    public void accept(WeatherLocation address) throws Exception {
 
                     }
                 }, new Consumer<Throwable>() {

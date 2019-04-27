@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentManager;
 
 import com.latitude.seventimer.R;
 import com.latitude.seventimer.base.BaseActivity;
-import com.latitude.seventimer.model.Address;
+import com.latitude.seventimer.model.WeatherLocation;
 import com.latitude.seventimer.ui.location.ChooseAreaActivity;
 
 /**
@@ -14,7 +14,7 @@ import com.latitude.seventimer.ui.location.ChooseAreaActivity;
  */
 public class MainActivity extends BaseActivity {
 
-    private Address selectedAddress;
+    private WeatherLocation selectedAddress;
 
     @Override
     protected void onCreate(Bundle savedInsatnceState) {
@@ -22,14 +22,14 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
 
         FragmentManager fm = getSupportFragmentManager();
-        WeatherFragment fragment = (WeatherFragment) fm.findFragmentById(R.id.fl_fragment_container);
+        WeatherFragment fragment = (WeatherFragment) fm.findFragmentById(R.id.layout_fragment_container);
         if (fragment == null) {
             fragment = WeatherFragment.newInstance();
         }
         fragment.setOnActionListener(new WeatherFragment.ActionListener() {
             @Override
             public void onBackClicked() {
-
+                onBackPressed();
             }
 
             @Override
@@ -39,7 +39,7 @@ public class MainActivity extends BaseActivity {
             }
         });
         fm.beginTransaction()
-                .add(R.id.fl_fragment_container, fragment)
+                .add(R.id.layout_fragment_container, fragment)
                 .commit();
     }
 
@@ -48,7 +48,7 @@ public class MainActivity extends BaseActivity {
         switch (requestCode) {
             case 1:
                 if (resultCode == RESULT_OK) {
-                    selectedAddress = (Address) data.getSerializableExtra("selected_address");
+                    selectedAddress = (WeatherLocation) data.getSerializableExtra("selected_address");
                     float latitude = selectedAddress.getLatitude();
                     float longitude = selectedAddress.getLongitude();
                     String addressName = selectedAddress.getAddress();
@@ -61,7 +61,7 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    public Address getSelectedAddress() {
+    public WeatherLocation getSelectedAddress() {
         return selectedAddress;
     }
 }
