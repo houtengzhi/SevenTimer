@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_location_settings"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
@@ -12,13 +12,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <com.latitude.seventimer.util.ClearEditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_text_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/input_address"/>
+            android:singleLine="true"
+            android:hint="Input Address"/>
 
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
     <com.yanzhenjie.recyclerview.SwipeRecyclerView
         android:id="@+id/recycler_location"
@@ -29,4 +30,4 @@
 
     </com.yanzhenjie.recyclerview.SwipeRecyclerView>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

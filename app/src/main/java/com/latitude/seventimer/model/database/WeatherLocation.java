@@ -2,6 +2,7 @@ package com.latitude.seventimer.model.database;
 
 import java.io.Serializable;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -17,7 +18,9 @@ public class WeatherLocation implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    public int id;
+
+    private String city;
 
     @ColumnInfo(name = "address")
     private String address;
@@ -34,16 +37,26 @@ public class WeatherLocation implements Serializable {
 
     }
 
+    @Ignore
     public WeatherLocation(float latitude, float longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
+    @Ignore
     public WeatherLocation(String address, int imageId, float latitude, float longitude) {
         this.address = address;
         this.imageId = imageId;
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getAddress() {
@@ -76,5 +89,11 @@ public class WeatherLocation implements Serializable {
 
     public void setLongitude(float longitude) {
         this.longitude = longitude;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return city + " " + address;
     }
 }

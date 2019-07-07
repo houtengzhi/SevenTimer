@@ -1,11 +1,6 @@
 package com.latitude.seventimer.base;
 
-import android.support.v4.util.ArrayMap;
-
 import com.latitude.seventimer.util.L;
-
-import java.util.Map;
-import java.util.Set;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;

@@ -2,6 +2,9 @@ package com.latitude.seventimer.model.map;
 
 import com.latitude.seventimer.model.database.WeatherLocation;
 
+import java.util.List;
+
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 
 /**
@@ -9,5 +12,9 @@ import io.reactivex.Observable;
  */
 public interface IMapHelper {
 
-    Observable<WeatherLocation> reverseGeoCode(WeatherLocation location);
+    public Observable<WeatherLocation> reverseGeoCode(WeatherLocation location);
+
+    public Observable<List<WeatherLocation>> fetchSuggestionLocation(String city, String keyword);
+
+    public void release();
 }

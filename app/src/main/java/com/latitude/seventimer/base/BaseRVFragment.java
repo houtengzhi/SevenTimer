@@ -1,12 +1,8 @@
 package com.latitude.seventimer.base;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.view.KeyEvent;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +15,10 @@ import com.latitude.seventimer.util.L;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import javax.inject.Inject;
+
+import androidx.annotation.LayoutRes;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 /**
  * Created by yechy on 2017/3/15.

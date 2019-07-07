@@ -3,7 +3,6 @@ package com.latitude.seventimer.base;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
 
 import com.latitude.seventimer.App;
 import com.latitude.seventimer.injector.Component.DaggerServiceComponent;
@@ -11,6 +10,8 @@ import com.latitude.seventimer.injector.Component.ServiceComponent;
 import com.latitude.seventimer.injector.module.ServiceModule;
 
 import javax.inject.Inject;
+
+import androidx.annotation.Nullable;
 
 
 /**

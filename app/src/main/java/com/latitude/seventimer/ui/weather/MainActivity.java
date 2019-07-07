@@ -2,12 +2,13 @@ package com.latitude.seventimer.ui.weather;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 
 import com.latitude.seventimer.R;
 import com.latitude.seventimer.base.BaseActivity;
 import com.latitude.seventimer.model.database.WeatherLocation;
 import com.latitude.seventimer.ui.location.LocationActivity;
+
+import androidx.fragment.app.FragmentManager;
 
 /**
  * Created by yechy on 2015/9/7.

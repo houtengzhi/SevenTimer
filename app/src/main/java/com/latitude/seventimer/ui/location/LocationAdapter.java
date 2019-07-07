@@ -1,7 +1,5 @@
 package com.latitude.seventimer.ui.location;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +10,9 @@ import com.latitude.seventimer.R;
 import com.latitude.seventimer.model.database.WeatherLocation;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by cloud on 2019/7/6.
@@ -55,6 +56,15 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
             return mDatas.get(position);
         }
         return null;
+    }
+
+    public void setData(List<WeatherLocation> datas) {
+        if (mDatas == null) {
+            mDatas = datas;
+        } else {
+            mDatas.clear();
+            mDatas.addAll(datas);
+        }
     }
 
     public static class LocationViewHolder extends RecyclerView.ViewHolder {

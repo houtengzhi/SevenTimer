@@ -4,6 +4,7 @@ import java.util.List;
 
 import io.reactivex.Flowable;
 import io.reactivex.FlowableOnSubscribe;
+import io.reactivex.Single;
 
 /**
  * Created by cloud on 2019/7/7.
@@ -16,9 +17,17 @@ public class DbHelper implements IDbHelper {
     }
 
     @Override
-    public Flowable<List<WeatherLocation>> queryAllLocations() {
-        Flowable.create(new FlowableOnSubscribe<Object>() {
-        })
-        return null;
+    public Single<List<WeatherLocation>> queryAllLocations() {
+        return mAppDatabase.locationDao().getAllLocations();
+    }
+
+    @Override
+    public Single<Long> insertLocation(WeatherLocation location) {
+        return mAppDatabase.locationDao().insertLocation(location);
+    }
+
+    @Override
+    public Single<Integer> deleteLocation(WeatherLocation location) {
+        return mAppDatabase.locationDao().deleteLocation(location);
     }
 }

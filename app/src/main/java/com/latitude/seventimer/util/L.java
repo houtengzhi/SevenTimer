@@ -1,7 +1,8 @@
 package com.latitude.seventimer.util;
 
-import android.support.annotation.NonNull;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 public class L {
     public static boolean logSwitch = true;

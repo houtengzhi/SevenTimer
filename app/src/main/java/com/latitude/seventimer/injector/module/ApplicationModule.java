@@ -7,6 +7,9 @@ import com.latitude.seventimer.injector.qualifier.ContextLife;
 import com.latitude.seventimer.injector.qualifier.DatabaseInfo;
 import com.latitude.seventimer.model.DataHelper;
 import com.latitude.seventimer.model.IDataHelper;
+import com.latitude.seventimer.model.database.AppDatabase;
+import com.latitude.seventimer.model.database.DbHelper;
+import com.latitude.seventimer.model.database.IDbHelper;
 import com.latitude.seventimer.model.http.IHttpHelper;
 import com.latitude.seventimer.model.http.RetrofitHelper;
 import com.latitude.seventimer.model.http.api.SevenTimerApi;
@@ -52,6 +55,12 @@ public class ApplicationModule {
     }
 
     @Provides
+    @Singleton
+    public IDbHelper provideDbHelper(AppDatabase appDatabase) {
+        return new DbHelper(appDatabase);
+    }
+
+    @Provides
     @DatabaseInfo
     public String provideDatabaseName() {
         L.d(TAG, "provideDatabaseName()");
@@ -61,9 +70,9 @@ public class ApplicationModule {
     @Provides
     @Singleton
     public IDataHelper provideDataHelper(@ContextLife Context context, IHttpHelper httpHelper,
-                                         IMapHelper mapHelper) {
+                                         IMapHelper mapHelper, IDbHelper dbHelper) {
         L.d(TAG, "provideDataHelper()");
-        return new DataHelper(context, httpHelper, mapHelper);
+        return new DataHelper(context, httpHelper, mapHelper, dbHelper);
     }
 
 }

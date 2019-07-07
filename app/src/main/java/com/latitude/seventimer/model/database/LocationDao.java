@@ -6,6 +6,8 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import io.reactivex.Flowable;
+import io.reactivex.Single;
 
 /**
  * Created by cloud on 2019/7/7.
@@ -14,11 +16,11 @@ import androidx.room.Query;
 public interface LocationDao {
 
     @Query("SELECT * FROM location")
-    List<WeatherLocation> getAllLocations();
+    Single<List<WeatherLocation>> getAllLocations();
 
     @Insert
-    void insertLocation(WeatherLocation location);
+    Single<Long> insertLocation(WeatherLocation location);
 
     @Delete
-    void deleteLocation(WeatherLocation location);
+    Single<Integer> deleteLocation(WeatherLocation location);
 }

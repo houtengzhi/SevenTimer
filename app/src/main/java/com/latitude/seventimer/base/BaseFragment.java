@@ -2,8 +2,6 @@ package com.latitude.seventimer.base;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +10,9 @@ import com.latitude.seventimer.App;
 import com.latitude.seventimer.injector.Component.DaggerFragmentComponent;
 import com.latitude.seventimer.injector.Component.FragmentComponent;
 import com.latitude.seventimer.injector.module.FragmentModule;
+
+import androidx.annotation.LayoutRes;
+import androidx.fragment.app.Fragment;
 
 
 /**

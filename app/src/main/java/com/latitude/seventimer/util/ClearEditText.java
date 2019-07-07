@@ -3,7 +3,6 @@ package com.latitude.seventimer.util;
 import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -11,6 +10,8 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.latitude.seventimer.R;
+
+import androidx.appcompat.widget.AppCompatEditText;
 
 /**
  * Created by yechy on 2015/9/7.
