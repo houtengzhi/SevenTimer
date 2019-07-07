@@ -1,7 +1,7 @@
 package com.latitude.seventimer.util;
 
 import com.latitude.seventimer.R;
-import com.latitude.seventimer.model.WeatherLocation;
+import com.latitude.seventimer.model.database.WeatherLocation;
 import com.latitude.seventimer.model.AstroWeather;
 import com.latitude.seventimer.model.AstroWeatherCluster;
 

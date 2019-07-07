@@ -6,6 +6,7 @@ import com.latitude.seventimer.injector.module.HttpModule;
 import com.latitude.seventimer.injector.qualifier.ContextLife;
 import com.latitude.seventimer.model.IDataHelper;
 import com.latitude.seventimer.model.http.IHttpHelper;
+import com.latitude.seventimer.model.map.IMapHelper;
 import com.latitude.seventimer.model.prefs.IPreferencesHelper;
 
 import javax.inject.Singleton;
@@ -23,6 +24,8 @@ public interface ApplicationComponent {
     Context getApplicationContext();
 
     IHttpHelper getRetrofitHelper();
+
+    IMapHelper getMapHelper();
 
     IDataHelper getDataHelper();
 }

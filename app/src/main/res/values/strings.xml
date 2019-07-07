@@ -14,5 +14,8 @@
     <string name="astro_unstable">不稳定预警</string>
     <string name="astro_wind">大风预警</string>
 
+    <string name="latitude_longitude">Latitude:%1$s  Longitude:%2$s</string>
+    <string name="update_time_xx">Update Time: %s</string>
+
     <string name="googleNeg">http://maps.googleapis.com/maps/api/geocode/json?latlng=</string>
 </resources>

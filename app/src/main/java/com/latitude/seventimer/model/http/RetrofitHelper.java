@@ -1,6 +1,6 @@
 package com.latitude.seventimer.model.http;
 
-import com.latitude.seventimer.model.WeatherLocation;
+import com.latitude.seventimer.model.database.WeatherLocation;
 import com.latitude.seventimer.model.AstroWeatherCluster;
 import com.latitude.seventimer.model.http.api.SevenTimerApi;
 import com.latitude.seventimer.util.DataParserUtil;

@@ -1,5 +1,7 @@
 package com.latitude.seventimer.ui.location;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 
@@ -11,6 +13,11 @@ import com.latitude.seventimer.ui.weather.WeatherFragment;
  * Created by cloud on 2019/4/27.
  */
 public class LocationActivity extends BaseActivity {
+
+    public static Intent getStartIntent(Context context) {
+        Intent intent = new Intent(context, LocationActivity.class);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -10,6 +10,8 @@ import com.latitude.seventimer.model.IDataHelper;
 import com.latitude.seventimer.model.http.IHttpHelper;
 import com.latitude.seventimer.model.http.RetrofitHelper;
 import com.latitude.seventimer.model.http.api.SevenTimerApi;
+import com.latitude.seventimer.model.map.IMapHelper;
+import com.latitude.seventimer.model.map.MapHelper;
 import com.latitude.seventimer.util.L;
 
 import javax.inject.Singleton;
@@ -44,6 +46,12 @@ public class ApplicationModule {
     }
 
     @Provides
+    @Singleton
+    public IMapHelper provideMapHelper() {
+        return new MapHelper();
+    }
+
+    @Provides
     @DatabaseInfo
     public String provideDatabaseName() {
         L.d(TAG, "provideDatabaseName()");
@@ -52,9 +60,10 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    public IDataHelper provideDataHelper(@ContextLife Context context, IHttpHelper httpHelper) {
+    public IDataHelper provideDataHelper(@ContextLife Context context, IHttpHelper httpHelper,
+                                         IMapHelper mapHelper) {
         L.d(TAG, "provideDataHelper()");
-        return new DataHelper(context, httpHelper);
+        return new DataHelper(context, httpHelper, mapHelper);
     }
 
 }

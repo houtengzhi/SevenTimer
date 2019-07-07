@@ -2,7 +2,7 @@ package com.latitude.seventimer.ui.weather;
 
 import com.latitude.seventimer.base.RxPresenter;
 
-import com.latitude.seventimer.model.WeatherLocation;
+import com.latitude.seventimer.model.database.WeatherLocation;
 import com.latitude.seventimer.model.AstroWeatherCluster;
 import com.latitude.seventimer.model.IDataHelper;
 
@@ -36,6 +36,24 @@ public class WeatherPresenter extends RxPresenter<WeatherContract.IView>
                     @Override
                     public void accept(WeatherLocation address) throws Exception {
 
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+
+                    }
+                });
+        addDisposable(disposable);
+    }
+
+    @Override
+    public void fetchLocationInfo(WeatherLocation location) {
+        Disposable disposable = mDataHelper.reverseGeoCode(location)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<WeatherLocation>() {
+                    @Override
+                    public void accept(WeatherLocation location) throws Exception {
+                        mView.refreshLocationInfo(location);
                     }
                 }, new Consumer<Throwable>() {
                     @Override

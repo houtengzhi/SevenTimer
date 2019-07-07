@@ -1,13 +1,13 @@
 package com.latitude.seventimer.model.map;
 
-import com.latitude.seventimer.model.WeatherLocation;
+import com.latitude.seventimer.model.database.WeatherLocation;
 
-import io.reactivex.Flowable;
+import io.reactivex.Observable;
 
 /**
  * Created by cloud on 2019/4/27.
  */
 public interface IMapHelper {
 
-    Flowable<WeatherLocation> reverseGeoCode(WeatherLocation location);
+    Observable<WeatherLocation> reverseGeoCode(WeatherLocation location);
 }

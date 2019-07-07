@@ -1,16 +1,33 @@
-package com.latitude.seventimer.model;
+package com.latitude.seventimer.model.database;
 
 import java.io.Serializable;
+
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 /**
  * Created by yechy on 2015/9/6.
  */
+@Entity(tableName = "location")
 public class WeatherLocation implements Serializable {
 
+    @Ignore
     private static final long serialVersionUID = 1L;
+
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+    @ColumnInfo(name = "address")
     private String address;
+
     private int imageId;
+
+    @ColumnInfo(name = "latitude")
     private float latitude;
+
+    @ColumnInfo(name = "longitude")
     private float longitude;
 
     public WeatherLocation() {

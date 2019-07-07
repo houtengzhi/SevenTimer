@@ -13,18 +13,20 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.latitude.seventimer.util.ClearEditText
+            android:id="@+id/edit_text_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/input_address"/>
 
     </android.support.v7.widget.Toolbar>
 
-    <android.support.v7.widget.RecyclerView
+    <com.yanzhenjie.recyclerview.SwipeRecyclerView
+        android:id="@+id/recycler_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/toolbar_location_settings"
         app:layout_constraintStart_toStartOf="parent">
 
-    </android.support.v7.widget.RecyclerView>
+    </com.yanzhenjie.recyclerview.SwipeRecyclerView>
 
 </android.support.constraint.ConstraintLayout>

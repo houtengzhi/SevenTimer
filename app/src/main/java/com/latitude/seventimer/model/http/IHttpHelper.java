@@ -1,6 +1,6 @@
 package com.latitude.seventimer.model.http;
 
-import com.latitude.seventimer.model.WeatherLocation;
+import com.latitude.seventimer.model.database.WeatherLocation;
 import com.latitude.seventimer.model.AstroWeatherCluster;
 
 import io.reactivex.Flowable;

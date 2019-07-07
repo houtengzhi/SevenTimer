@@ -6,8 +6,8 @@ import android.support.v4.app.FragmentManager;
 
 import com.latitude.seventimer.R;
 import com.latitude.seventimer.base.BaseActivity;
-import com.latitude.seventimer.model.WeatherLocation;
-import com.latitude.seventimer.ui.location.ChooseAreaActivity;
+import com.latitude.seventimer.model.database.WeatherLocation;
+import com.latitude.seventimer.ui.location.LocationActivity;
 
 /**
  * Created by yechy on 2015/9/7.
@@ -34,8 +34,7 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onSetLocation() {
-                Intent intent = new Intent(MainActivity.this, ChooseAreaActivity.class);
-                startActivityForResult(intent, 1);
+                startActivityForResult(LocationActivity.getStartIntent(MainActivity.this), 1);
             }
         });
         fm.beginTransaction()

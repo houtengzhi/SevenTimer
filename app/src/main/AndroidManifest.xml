@@ -29,10 +29,6 @@
             </intent-filter>
 
         </activity>
-
-        <activity android:name=".ui.location.ChooseAreaActivity">
-
-        </activity>
         <activity android:name=".ui.location.LocationActivity" />
     </application>
 
