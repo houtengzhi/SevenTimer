@@ -7,6 +7,7 @@ import com.latitude.seventimer.R;
 import com.latitude.seventimer.base.BaseActivity;
 import com.latitude.seventimer.model.database.WeatherLocation;
 import com.latitude.seventimer.ui.location.LocationActivity;
+import com.latitude.seventimer.util.AppDefs;
 
 import androidx.fragment.app.FragmentManager;
 
@@ -35,29 +36,12 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onSetLocation() {
-                startActivityForResult(LocationActivity.getStartIntent(MainActivity.this), 1);
+                startActivityForResult(LocationActivity.getStartIntent(MainActivity.this), AppDefs.REQUEST_CODE_GET_LOCATION);
             }
         });
         fm.beginTransaction()
                 .add(R.id.layout_fragment_container, fragment)
                 .commit();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case 1:
-                if (resultCode == RESULT_OK) {
-                    selectedAddress = (WeatherLocation) data.getSerializableExtra("selected_address");
-                    float latitude = selectedAddress.getLatitude();
-                    float longitude = selectedAddress.getLongitude();
-                    String addressName = selectedAddress.getAddress();
-                    //todo
-                }
-                break;
-            default:
-                break;
-        }
     }
 
 

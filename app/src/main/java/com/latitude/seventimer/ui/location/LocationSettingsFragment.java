@@ -117,14 +117,8 @@ public class LocationSettingsFragment extends BaseRVFragment<LocationSettingsPre
         mLocationRecyclerView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int adapterPosition) {
-                WeatherLocation address = mLocationAdapter.getItem(adapterPosition);
-                Intent intent = new Intent();
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("selected_address", address);
-                intent.putExtras(bundle);
-                getActivity().setResult(RESULT_OK, intent);
-                //销毁当前活动
-                getActivity().finish();
+                WeatherLocation location = mLocationAdapter.getItem(adapterPosition);
+                startWeatherProfile(location);
             }
         });
         mLocationRecyclerView.setAdapter(mLocationAdapter);
@@ -171,7 +165,7 @@ public class LocationSettingsFragment extends BaseRVFragment<LocationSettingsPre
     private void startWeatherProfile(WeatherLocation location) {
         Intent intent = new Intent();
         Bundle bundle = new Bundle();
-        bundle.putSerializable("selected_address", location);
+        intent.putExtra("selected_location", location);
         intent.putExtras(bundle);
         getActivity().setResult(RESULT_OK, intent);
         //销毁当前活动

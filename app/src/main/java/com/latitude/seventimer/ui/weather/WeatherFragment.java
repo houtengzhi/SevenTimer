@@ -3,6 +3,7 @@ package com.latitude.seventimer.ui.weather;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
@@ -15,6 +16,8 @@ import com.latitude.seventimer.R;
 import com.latitude.seventimer.base.BaseRVFragment;
 import com.latitude.seventimer.model.database.WeatherLocation;
 import com.latitude.seventimer.model.AstroWeatherCluster;
+import com.latitude.seventimer.ui.location.LocationActivity;
+import com.latitude.seventimer.util.AppDefs;
 import com.latitude.seventimer.util.L;
 
 import java.util.Arrays;
@@ -28,6 +31,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by cloud on 2019/4/20.
@@ -91,9 +96,8 @@ public class WeatherFragment extends BaseRVFragment<WeatherPresenter> implements
             mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (mActionListener != null) {
-                        mActionListener.onSetLocation();
-                    }
+                    startActivityForResult(LocationActivity.getStartIntent(getActivity()),
+                            AppDefs.REQUEST_CODE_GET_LOCATION);
                 }
             });
             ActionBar actionBar = activity.getSupportActionBar();
@@ -122,7 +126,7 @@ public class WeatherFragment extends BaseRVFragment<WeatherPresenter> implements
     protected void initDatas() {
         //获取当前位置
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-        requestPermissions();
+        requestLocationPermissions();
     }
 
     private void getLocationProvider() {
@@ -149,7 +153,7 @@ public class WeatherFragment extends BaseRVFragment<WeatherPresenter> implements
         }
     }
 
-    private void requestPermissions() {
+    private void requestLocationPermissions() {
         mRxPermissions.request(Manifest.permission.ACCESS_COARSE_LOCATION,
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 .subscribe(new Observer<Boolean>() {
@@ -188,6 +192,26 @@ public class WeatherFragment extends BaseRVFragment<WeatherPresenter> implements
 
                     }
                 });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case AppDefs.REQUEST_CODE_GET_LOCATION:
+                if (resultCode == RESULT_OK) {
+                    mSelectedLocation = data.getParcelableExtra("selected_location");
+                    float latitude = mSelectedLocation.getLatitude();
+                    float longitude = mSelectedLocation.getLongitude();
+                    String addressName = mSelectedLocation.getAddress();
+                    refreshLocationInfo(mSelectedLocation);
+                    mPresenter.fetchAstroWeather(latitude, longitude);
+                    //todo
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     @Override

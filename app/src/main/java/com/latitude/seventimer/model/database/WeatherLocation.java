@@ -1,5 +1,8 @@
 package com.latitude.seventimer.model.database;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 
 import androidx.annotation.NonNull;
@@ -12,10 +15,7 @@ import androidx.room.PrimaryKey;
  * Created by yechy on 2015/9/6.
  */
 @Entity(tableName = "location")
-public class WeatherLocation implements Serializable {
-
-    @Ignore
-    private static final long serialVersionUID = 1L;
+public class WeatherLocation implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)
     public int id;
@@ -50,6 +50,44 @@ public class WeatherLocation implements Serializable {
         this.latitude = latitude;
         this.longitude = longitude;
     }
+
+    @Ignore
+    public WeatherLocation(Parcel source) {
+        id = source.readInt();
+        city = source.readString();
+        address = source.readString();
+        imageId = source.readInt();
+        latitude = source.readFloat();
+        longitude = source.readFloat();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(city);
+        dest.writeString(address);
+        dest.writeInt(imageId);
+        dest.writeFloat(latitude);
+        dest.writeFloat(longitude);
+    }
+
+    @Ignore
+    public static final Creator<WeatherLocation> CREATOR = new Creator<WeatherLocation>() {
+        @Override
+        public WeatherLocation createFromParcel(Parcel source) {
+            return new WeatherLocation(source);
+        }
+
+        @Override
+        public WeatherLocation[] newArray(int size) {
+            return new WeatherLocation[0];
+        }
+    };
 
     public String getCity() {
         return city;
