@@ -171,6 +171,7 @@ public class LocationSettingsFragment extends BaseRVFragment<LocationSettingsPre
                 item.setBackgroundColor(Color.RED);
                 item.setText(R.string.Delete);
                 item.setTextSize(20);
+                item.setTextColor(Color.WHITE);
                 rightMenu.addMenuItem(item);
             }
         });
