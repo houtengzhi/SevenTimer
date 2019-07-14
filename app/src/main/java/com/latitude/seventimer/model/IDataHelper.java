@@ -28,6 +28,10 @@ public interface IDataHelper {
 
     public Single<Long> insertLocation(WeatherLocation location);
 
+    public Single<Long> insertOrUpdateLocation(WeatherLocation location);
+
+    public Single<Integer> updateLocation(WeatherLocation location);
+
     public Single<Integer> deleteLocation(WeatherLocation location);
 
     public void release();

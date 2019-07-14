@@ -170,12 +170,9 @@ public class WeatherFragment extends BaseRVFragment<WeatherPresenter> implements
                             @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(provider);
                             if (location == null) {
                                 L.w(TAG, "Current location is null.");
-                            } else if (mSelectedLocation == null) {
-                                mSelectedLocation = new WeatherLocation((float) location.getLatitude(),
-                                        (float) location.getLongitude());
                             } else {
-                                mSelectedLocation.setLatitude((float) location.getLatitude());
-                                mSelectedLocation.setLongitude((float) location.getLongitude());
+                                setSelectedLocation(new WeatherLocation(1, (float) location.getLatitude(),
+                                        (float) location.getLongitude()));
                             }
                             mPresenter.fetchAstroWeather((float) location.getLatitude(), (float) location.getLongitude());
                             mPresenter.fetchLocationInfo(mSelectedLocation);
@@ -200,13 +197,9 @@ public class WeatherFragment extends BaseRVFragment<WeatherPresenter> implements
         switch (requestCode) {
             case AppDefs.REQUEST_CODE_GET_LOCATION:
                 if (resultCode == RESULT_OK) {
-                    mSelectedLocation = data.getParcelableExtra("selected_location");
-                    float latitude = mSelectedLocation.getLatitude();
-                    float longitude = mSelectedLocation.getLongitude();
-                    String addressName = mSelectedLocation.getAddress();
-                    refreshLocationInfo(mSelectedLocation);
-                    mPresenter.fetchAstroWeather(latitude, longitude);
-                    //todo
+                    WeatherLocation location = data.getParcelableExtra("selected_location");
+                    refreshLocationInfo(location);
+                    mPresenter.fetchAstroWeather(location.getLatitude(), location.getLongitude());
                 }
                 break;
             default:
@@ -214,8 +207,14 @@ public class WeatherFragment extends BaseRVFragment<WeatherPresenter> implements
         }
     }
 
+    private void setSelectedLocation(WeatherLocation location) {
+        mSelectedLocation = location;
+        mPresenter.insertOrUpdateLocation(location);
+    }
+
     @Override
     public void refreshLocationInfo(WeatherLocation address) {
+        setSelectedLocation(address);
         mToolbar.setTitle(address.getAddress());
         mToolbar.setSubtitle(getString(R.string.latitude_longitude, address.getLatitude(), address.getLongitude()));
     }

@@ -12,7 +12,10 @@ import com.baidu.mapapi.search.sug.SuggestionResult;
 import com.baidu.mapapi.search.sug.SuggestionSearch;
 import com.baidu.mapapi.search.sug.SuggestionSearchOption;
 import com.latitude.seventimer.model.database.WeatherLocation;
+import com.latitude.seventimer.util.L;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.BackpressureStrategy;
@@ -27,6 +30,8 @@ import io.reactivex.ObservableOnSubscribe;
  * Created by cloud on 2019/4/27.
  */
 public class MapHelper implements IMapHelper {
+
+    private static final String TAG = "MapHelper";
 
     private GeoCoder mGeoCoder;
     private SuggestionSearch mSuggestionSearch;
@@ -55,6 +60,7 @@ public class MapHelper implements IMapHelper {
 
     @Override
     public Observable<WeatherLocation> reverseGeoCode(final WeatherLocation location) {
+        L.d(TAG, "reverseGeoCode(), %s", location.toString());
         return Observable.create(new ObservableOnSubscribe<WeatherLocation>() {
             @Override
             public void subscribe(final ObservableEmitter<WeatherLocation> emitter) throws Exception {
@@ -67,10 +73,12 @@ public class MapHelper implements IMapHelper {
                     @Override
                     public void onGetReverseGeoCodeResult(ReverseGeoCodeResult reverseGeoCodeResult) {
                         if (reverseGeoCodeResult == null || reverseGeoCodeResult.error != SearchResult.ERRORNO.NO_ERROR) {
+                            L.i(TAG, "onGetReverseGeoCodeResult: error = %s", reverseGeoCodeResult.error.name());
                             emitter.onError(new Throwable());
                         } else {
                             String address = reverseGeoCodeResult.getAddress();
                             int adCode = reverseGeoCodeResult.getCityCode();
+                            L.d(TAG, "onGetReverseGeoCodeResult: %s", reverseGeoCodeResult.toString());
                             location.setAddress(address);
                             emitter.onNext(location);
                             emitter.onComplete();
@@ -90,14 +98,17 @@ public class MapHelper implements IMapHelper {
         return Observable.create(new ObservableOnSubscribe<List<WeatherLocation>>() {
             @Override
             public void subscribe(final ObservableEmitter<List<WeatherLocation>> emitter) throws Exception {
+                L.d(TAG, "fetchSuggestionLocation(), city:%1$s, keyword:%2$s", city, keyword);
                 mSuggestionSearch.setOnGetSuggestionResultListener(new OnGetSuggestionResultListener() {
                     @Override
                     public void onGetSuggestionResult(SuggestionResult suggestionResult) {
                         if (suggestionResult != null && suggestionResult.error == SearchResult.ERRORNO.NO_ERROR) {
                             List<SuggestionResult.SuggestionInfo> results = suggestionResult.getAllSuggestions();
+                            L.d(TAG, "onGetSuggestionResult(), suggestionResult:%s", Arrays.toString(results.toArray()));
                             emitter.onNext(MapUtil.convertSuggestionInfoList(results));
                             emitter.onComplete();
                         } else {
+                            L.i(TAG, "onGetSuggestionResult(), error:%s", suggestionResult.error.name());
                             emitter.onError(new Throwable());
                         }
                     }

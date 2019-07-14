@@ -16,6 +16,7 @@
 
     <string name="latitude_longitude">Latitude:%1$s  Longitude:%2$s</string>
     <string name="update_time_xx">Update Time: %s</string>
+    <string name="Delete">"Delete"</string>
 
     <string name="googleNeg">http://maps.googleapis.com/maps/api/geocode/json?latlng=</string>
 </resources>

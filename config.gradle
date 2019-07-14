@@ -28,5 +28,8 @@ ext {
             'mta' : 'com.qq.mta:mta:3.4.7-release',
             'mid' : 'com.tencent.mid:mid:4.06-Release',
 
+            //debug
+            'pandora'             :      'com.github.whataa:pandora:androidx_v2.0.4',
+
     ]
 }

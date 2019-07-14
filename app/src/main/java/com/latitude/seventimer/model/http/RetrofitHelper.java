@@ -55,7 +55,7 @@ public class RetrofitHelper implements IHttpHelper {
                     public AstroWeatherCluster apply(ResponseBody responseBody) {
                         try {
                             String response = responseBody.string();
-                            L.d(TAG, "fetchAstroWeather(), response:%s", response);
+                            L.v(TAG, "fetchAstroWeather(), response:%s", response);
                             return DataParserUtil.parseAstroWeather(response, latitude, longitude);
                         } catch (Exception e) {
                             e.printStackTrace();

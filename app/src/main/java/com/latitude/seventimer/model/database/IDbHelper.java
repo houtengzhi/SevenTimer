@@ -12,7 +12,13 @@ public interface IDbHelper {
 
     Single<List<WeatherLocation>> queryAllLocations();
 
+    Single<WeatherLocation> queryLocationById(int id);
+
     Single<Long> insertLocation(WeatherLocation location);
 
+    Single<Integer> updateLocation(WeatherLocation location);
+
     Single<Integer> deleteLocation(WeatherLocation location);
+
+    Single<Long> insertOrUpdateLocation(WeatherLocation location);
 }

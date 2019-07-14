@@ -44,6 +44,13 @@ public class WeatherLocation implements Parcelable {
     }
 
     @Ignore
+    public WeatherLocation(int id, float latitude, float longitude) {
+        this.id = id;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    @Ignore
     public WeatherLocation(String address, int imageId, float latitude, float longitude) {
         this.address = address;
         this.imageId = imageId;
@@ -89,6 +96,14 @@ public class WeatherLocation implements Parcelable {
         }
     };
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getCity() {
         return city;
     }
@@ -129,9 +144,21 @@ public class WeatherLocation implements Parcelable {
         this.longitude = longitude;
     }
 
-    @NonNull
+    @Ignore
     @Override
     public String toString() {
+        return "WeatherLocation{" +
+                "id=" + id +
+                ", city='" + city + '\'' +
+                ", address='" + address + '\'' +
+                ", imageId=" + imageId +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                '}';
+    }
+
+    @Ignore
+    public String getFormatAddress() {
         return city + " " + address;
     }
 }

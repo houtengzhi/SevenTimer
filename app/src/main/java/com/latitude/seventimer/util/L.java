@@ -14,7 +14,10 @@ public class L {
         if (logLevel <= Log.ERROR || logSwitch) {
             Log.e(version + tag, msg);
         }
+    }
 
+    public static void e(String tag, String format, Object... args) {
+        e(tag, formatMessage(format, args));
     }
 
     public static void d(String tag, String msg) {
@@ -33,17 +36,28 @@ public class L {
         }
     }
 
+    public static void w(String tag, String format, Object... args) {
+        w(tag, formatMessage(format, args));
+    }
+
     public static void i(String tag, String msg) {
         if (logLevel <= Log.INFO || logSwitch) {
             Log.i(version + tag, msg);
         }
+    }
 
+    public static void i(String tag, String format, Object... args) {
+        i(tag, formatMessage(format, args));
     }
 
     public static void v(String tag, String msg) {
         if (logLevel <= Log.VERBOSE || logSwitch) {
             Log.v(version + tag, msg);
         }
+    }
+
+    public static void v(String tag, String format, Object... args) {
+        v(tag, formatMessage(format, args));
     }
 
     public static void LongString(String tag, String msg) {

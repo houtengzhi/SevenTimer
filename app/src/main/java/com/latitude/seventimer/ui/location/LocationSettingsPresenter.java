@@ -3,6 +3,7 @@ package com.latitude.seventimer.ui.location;
 import com.latitude.seventimer.base.RxPresenter;
 import com.latitude.seventimer.model.IDataHelper;
 import com.latitude.seventimer.model.database.WeatherLocation;
+import com.latitude.seventimer.util.L;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -25,6 +26,8 @@ import io.reactivex.subjects.PublishSubject;
  */
 public class LocationSettingsPresenter extends RxPresenter<LocationSettingsContract.IView>
         implements LocationSettingsContract.IPresenter<LocationSettingsContract.IView>  {
+
+    private static final String TAG = "LocationSettingsPresenter";
     private IDataHelper mDataHelper;
 
     private PublishSubject<String[]> mSearchSubject;
@@ -47,12 +50,13 @@ public class LocationSettingsPresenter extends RxPresenter<LocationSettingsContr
 
                     @Override
                     public void onSuccess(List<WeatherLocation> weatherLocations) {
-
+                        L.d(TAG, "getAllLocations: onSuccess");
+                        mView.refreshLocationList(weatherLocations);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        L.d(TAG, "getAllLocations: onError");
                     }
                 });
     }
@@ -64,7 +68,21 @@ public class LocationSettingsPresenter extends RxPresenter<LocationSettingsContr
 
     @Override
     public void deleteLocation(WeatherLocation location) {
+        Disposable disposable = mDataHelper.deleteLocation(location)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer integer) throws Exception {
 
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+
+                    }
+                });
+        addDisposable(disposable);
     }
 
     @Override
@@ -102,6 +120,7 @@ public class LocationSettingsPresenter extends RxPresenter<LocationSettingsContr
     @Override
     public void startSearchLocation(String city, String keyword) {
         if (mSearchSubject != null) {
+            L.d(TAG, "startSearchLocation(), city:%1$s, keyword:%2$s", city, keyword);
             mSearchSubject.onNext(new String[]{city, keyword});
         }
     }

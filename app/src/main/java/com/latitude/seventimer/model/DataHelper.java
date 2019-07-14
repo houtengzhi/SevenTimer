@@ -59,6 +59,16 @@ public class DataHelper implements IDataHelper {
     }
 
     @Override
+    public Single<Long> insertOrUpdateLocation(WeatherLocation location) {
+        return mDbHelper.insertOrUpdateLocation(location);
+    }
+
+    @Override
+    public Single<Integer> updateLocation(WeatherLocation location) {
+        return mDbHelper.updateLocation(location);
+    }
+
+    @Override
     public Single<Integer> deleteLocation(WeatherLocation location) {
         return mDbHelper.deleteLocation(location);
     }

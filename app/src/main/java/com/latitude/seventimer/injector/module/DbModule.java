@@ -20,6 +20,8 @@ public class DbModule {
     @Singleton
     @Provides
     AppDatabase provideAppDatabase(@ContextLife Context context) {
-        return Room.databaseBuilder(context, AppDatabase.class, "database.db").build();
+        return Room.databaseBuilder(context, AppDatabase.class, "database.db")
+                .fallbackToDestructiveMigration()
+                .build();
     }
 }

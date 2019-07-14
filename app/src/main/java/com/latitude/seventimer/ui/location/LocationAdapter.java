@@ -67,6 +67,12 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
         }
     }
 
+    public void removeItem(int position) {
+        if (mDatas != null && mDatas.size() > position && position > -1) {
+            mDatas.remove(position);
+        }
+    }
+
     public static class LocationViewHolder extends RecyclerView.ViewHolder {
         TextView temp;
         TextView title;

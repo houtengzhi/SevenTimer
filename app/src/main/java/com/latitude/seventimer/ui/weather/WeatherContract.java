@@ -17,5 +17,8 @@ public interface WeatherContract {
         void fetchLocationInfo(float latitude, float longitude);
         void fetchLocationInfo(WeatherLocation location);
         void fetchAstroWeather(float latitude, float longitude);
+
+        void insertLocation(WeatherLocation location);
+        void insertOrUpdateLocation(WeatherLocation location);
     }
 }
