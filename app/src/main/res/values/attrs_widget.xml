@@ -1,0 +1,13 @@
+<resources>
+    <attr name="mx_icon" format="reference"/>
+    <attr name="mx_title" format="string"/>
+    <attr name="mx_subtitle" format="string"/>
+    <attr name="mx_top_border" format="boolean"/>
+    <attr name="mx_bottom_border" format="boolean"/>
+
+    <declare-styleable name="YYCommonItemLayout">
+        <attr name="mx_border_color" format="color"/>
+        <attr name="mx_top_border"/>
+        <attr name="mx_bottom_border"/>
+    </declare-styleable>
+</resources>

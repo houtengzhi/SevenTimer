@@ -19,6 +19,7 @@ import com.latitude.seventimer.R;
 import com.latitude.seventimer.base.BaseRVFragment;
 import com.latitude.seventimer.model.database.WeatherLocation;
 import com.latitude.seventimer.model.AstroWeatherCluster;
+import com.latitude.seventimer.ui.about.AboutActivity;
 import com.latitude.seventimer.ui.location.LocationActivity;
 import com.latitude.seventimer.util.AppDefs;
 import com.latitude.seventimer.util.L;
@@ -101,8 +102,13 @@ public class WeatherFragment extends BaseRVFragment<WeatherPresenter> implements
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     int id = item.getItemId();
-                    if (id == R.id.action_share) {
+                    switch (id) {
+                        case R.id.action_about:
+                            AboutActivity.actionStart(getActivity());
+                            break;
 
+                        case R.id.action_settings:
+                            break;
                     }
                     return false;
                 }

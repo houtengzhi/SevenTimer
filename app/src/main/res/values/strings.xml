@@ -19,6 +19,7 @@
     <string name="Delete">"Delete"</string>
     <string name="Share">"Share"</string>
     <string name="About">"About"</string>
+    <string name="Version">"Version"</string>
 
     <string name="googleNeg">http://maps.googleapis.com/maps/api/geocode/json?latlng=</string>
     <string name="title_activity_main2">Main2Activity</string>
