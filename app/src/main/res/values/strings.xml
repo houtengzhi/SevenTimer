@@ -5,7 +5,7 @@
 
     <string name="date">日期</string>
     <string name="hour">本地区时</string>
-    <string name= "astro_cloud">全天云量</string>
+    <string name="astro_cloud">全天云量</string>
     <string name="astro_seeing">大气视宁度</string>
     <string name="astro_transparency">大气透明度</string>
     <string name="temp">地面气温℃</string>
@@ -14,9 +14,22 @@
     <string name="astro_unstable">不稳定预警</string>
     <string name="astro_wind">大风预警</string>
 
-    <string name="latitude_longitude">Latitude:%1$s  Longitude:%2$s</string>
+    <string name="latitude_longitude">"Latitude:%1$.2f &#160;&#160;&#160;&#160;Longitude:%2$.2f"</string>
     <string name="update_time_xx">Update Time: %s</string>
     <string name="Delete">"Delete"</string>
+    <string name="Share">"Share"</string>
+    <string name="About">"About"</string>
 
     <string name="googleNeg">http://maps.googleapis.com/maps/api/geocode/json?latlng=</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

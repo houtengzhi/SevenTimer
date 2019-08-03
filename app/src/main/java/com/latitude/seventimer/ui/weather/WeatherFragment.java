@@ -8,6 +8,9 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,6 +46,7 @@ public class WeatherFragment extends BaseRVFragment<WeatherPresenter> implements
     private RecyclerView mWeatherRecycler;
     private WeatherAdapter mWeatherAdapter;
     private SwipeRefreshLayout mRefreshLayout;
+    private TextView mToolbarTitleTextView;
 
     private LocationManager locationManager;
     private String provider;
@@ -90,23 +94,28 @@ public class WeatherFragment extends BaseRVFragment<WeatherPresenter> implements
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         if (activity != null) {
             mToolbar = view.findViewById(R.id.toolbar_weather);
-            mToolbar.setTitle("Hefei");
-            mToolbar.setSubtitle("23324jfjjf");
+//            mToolbar.setTitle("Hefei");
+//            mToolbar.setSubtitle("23324jfjjf");
             activity.setSupportActionBar(mToolbar);
-            mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
                 @Override
-                public void onClick(View v) {
-                    startActivityForResult(LocationActivity.getStartIntent(getActivity()),
-                            AppDefs.REQUEST_CODE_GET_LOCATION);
+                public boolean onMenuItemClick(MenuItem item) {
+                    int id = item.getItemId();
+                    if (id == R.id.action_share) {
+
+                    }
+                    return false;
                 }
             });
             ActionBar actionBar = activity.getSupportActionBar();
             if (actionBar != null) {
                 actionBar.setDisplayHomeAsUpEnabled(true);
+                actionBar.setDisplayShowTitleEnabled(false);
                 setHasOptionsMenu(true);
             }
         }
 
+        mToolbarTitleTextView = view.findViewById(R.id.tv_toolbar_title);
         mUpdateTimeTv = view.findViewById(R.id.tv_weather_update_time);
         mRefreshLayout = view.findViewById(R.id.refresh_layout_weather);
         mWeatherRecycler = view.findViewById(R.id.recycler_weather);
@@ -114,12 +123,25 @@ public class WeatherFragment extends BaseRVFragment<WeatherPresenter> implements
         mWeatherRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         mWeatherRecycler.setAdapter(mWeatherAdapter);
 
+        mToolbarTitleTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(LocationActivity.getStartIntent(getActivity()),
+                        AppDefs.REQUEST_CODE_GET_LOCATION);
+            }
+        });
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 mPresenter.fetchAstroWeather(mSelectedLocation.getLatitude(), mSelectedLocation.getLongitude());
             }
         });
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.weather_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
@@ -215,8 +237,8 @@ public class WeatherFragment extends BaseRVFragment<WeatherPresenter> implements
     @Override
     public void refreshLocationInfo(WeatherLocation address) {
         setSelectedLocation(address);
-        mToolbar.setTitle(address.getAddress());
-        mToolbar.setSubtitle(getString(R.string.latitude_longitude, address.getLatitude(), address.getLongitude()));
+        mToolbarTitleTextView.setText(address.getAddress());
+//        mToolbar.setSubtitle(getString(R.string.latitude_longitude, address.getLatitude(), address.getLongitude()));
     }
 
     @Override

@@ -4,19 +4,23 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.weather.MainActivity">
+    tools:context=".ui.weather.Main2Activity">
 
+    <!-- As the main content view, the view below consumes the entire
+         space available using match_parent in both dimensions. -->
     <FrameLayout
-        android:id="@+id/layout_fragment_container"
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
+    <!-- The drawer is given a fixed width in dp and extends the full height of
+         the container. -->
     <fragment
         android:id="@+id/navigation_drawer"
         android:name="com.latitude.seventimer.ui.weather.NavigationDrawerFragment"
         android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        tools:layout="@layout/layout_drawer_main"/>
+        tools:layout="@layout/layout_drawer_main" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

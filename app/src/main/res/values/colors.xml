@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="mxColorPrimary">@color/mxBlue</color>
+    <color name="mxColorPrimaryDark">#0069C2</color>
+    <color name="mxColorAccent">@color/mxBlue</color>
+    <color name="mxColorDanger">@color/mxRed</color>
+    <color name="mxColorNavBg">@color/mxCommon7</color>
+    <color name="mxColorNavFg">@color/mxColorPrimary</color>
+
     <color name="mxBg1">#F0F2F5</color>
     <color name="mxBlue">#5392FF</color>
     <color name="mxRed">#DB4646</color>

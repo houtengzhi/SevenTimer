@@ -3,6 +3,16 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/mxColorPrimary</item>
+        <item name="colorPrimaryDark">@color/mxColorPrimaryDark</item>
+        <item name="colorAccent">@color/mxColorAccent</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="AppTheme">
+        <item name="android:background">@color/mxColorPrimary</item>
+    </style>
+
+    <style name="LeftDrawerArrowStyle" parent="AppTheme">
     </style>
 
 </resources>

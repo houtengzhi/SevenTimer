@@ -14,9 +14,10 @@ import androidx.fragment.app.FragmentManager;
 /**
  * Created by yechy on 2015/9/7.
  */
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     private WeatherLocation selectedAddress;
+    private NavigationDrawerFragment mNavigationDrawerFragment;
 
     @Override
     protected void onCreate(Bundle savedInsatnceState) {
@@ -24,6 +25,10 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
 
         FragmentManager fm = getSupportFragmentManager();
+
+        mNavigationDrawerFragment = (NavigationDrawerFragment) fm.findFragmentById(R.id.navigation_drawer);
+        mNavigationDrawerFragment.setUp(R.id.navigation_drawer, findViewById(R.id.drawer_layout));
+
         WeatherFragment fragment = (WeatherFragment) fm.findFragmentById(R.id.layout_fragment_container);
         if (fragment == null) {
             fragment = WeatherFragment.newInstance();
@@ -39,11 +44,17 @@ public class MainActivity extends BaseActivity {
                 startActivityForResult(LocationActivity.getStartIntent(MainActivity.this), AppDefs.REQUEST_CODE_GET_LOCATION);
             }
         });
-        fm.beginTransaction()
-                .add(R.id.layout_fragment_container, fragment)
-                .commit();
+        if (!fragment.isAdded()) {
+            fm.beginTransaction()
+                    .add(R.id.layout_fragment_container, fragment)
+                    .commit();
+        }
     }
 
+    @Override
+    public void onNavigationDrawerItemSelected(int position) {
+
+    }
 
     public WeatherLocation getSelectedAddress() {
         return selectedAddress;

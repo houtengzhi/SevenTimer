@@ -13,13 +13,13 @@ android {
 
         File file = rootProject.file('local.properties')
         Properties localProperties = new Properties()
-        if(file.exists()){
+        if (file.exists()) {
             //加载资源
             InputStream inputStream = rootProject.file('local.properties').newDataInputStream()
             localProperties.load(inputStream)
         }
         String ak = localProperties.getProperty('BAIDU_MAP_AK')
-        manifestPlaceholders = ['BAIDU_MAP_AK' : ak]
+        manifestPlaceholders = ['BAIDU_MAP_AK': ak]
     }
     buildTypes {
         release {
