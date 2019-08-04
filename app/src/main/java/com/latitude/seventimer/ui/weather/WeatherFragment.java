@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +49,7 @@ public class WeatherFragment extends BaseRVFragment<WeatherPresenter> implements
     private WeatherAdapter mWeatherAdapter;
     private SwipeRefreshLayout mRefreshLayout;
     private TextView mToolbarTitleTextView;
+    private ProgressBar mProgressBar;
 
     private LocationManager locationManager;
     private String provider;
@@ -104,7 +106,7 @@ public class WeatherFragment extends BaseRVFragment<WeatherPresenter> implements
                     int id = item.getItemId();
                     switch (id) {
                         case R.id.action_about:
-                            AboutActivity.actionStart(getActivity());
+                            AboutActivity.Companion.actionStart(getActivity());
                             break;
 
                         case R.id.action_settings:
@@ -125,6 +127,7 @@ public class WeatherFragment extends BaseRVFragment<WeatherPresenter> implements
         mUpdateTimeTv = view.findViewById(R.id.tv_weather_update_time);
         mRefreshLayout = view.findViewById(R.id.refresh_layout_weather);
         mWeatherRecycler = view.findViewById(R.id.recycler_weather);
+        mProgressBar = view.findViewById(R.id.progressbar_weather);
         mWeatherAdapter = new WeatherAdapter();
         mWeatherRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         mWeatherRecycler.setAdapter(mWeatherAdapter);
@@ -253,5 +256,10 @@ public class WeatherFragment extends BaseRVFragment<WeatherPresenter> implements
         mWeatherAdapter.setData(cluster.getList());
         mWeatherAdapter.notifyDataSetChanged();
         mUpdateTimeTv.setText(getString(R.string.update_time_xx, cluster.getUpdateTime()));
+    }
+
+    @Override
+    public void showProgressbar(boolean isShow) {
+        mProgressBar.setVisibility(isShow ? View.VISIBLE : View.GONE);
     }
 }

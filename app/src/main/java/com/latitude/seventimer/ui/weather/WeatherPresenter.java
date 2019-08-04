@@ -7,10 +7,13 @@ import com.latitude.seventimer.model.AstroWeatherCluster;
 import com.latitude.seventimer.model.IDataHelper;
 import com.latitude.seventimer.util.L;
 
+import org.reactivestreams.Subscription;
+
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
@@ -70,6 +73,18 @@ public class WeatherPresenter extends RxPresenter<WeatherContract.IView>
         Disposable disposable = mDataHelper.fetchAstroWeather(latitude, longitude)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Subscription>() {
+                    @Override
+                    public void accept(Subscription subscription) throws Exception {
+                        mView.showProgressbar(true);
+                    }
+                })
+                .doFinally(new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        mView.showProgressbar(false);
+                    }
+                })
                 .subscribe(new Consumer<AstroWeatherCluster>() {
                     @Override
                     public void accept(AstroWeatherCluster astroWeatherCluster) throws Exception {

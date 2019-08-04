@@ -1,6 +1,7 @@
 package com.latitude.seventimer.util
 
 import android.content.Context
+import android.os.Build
 
 /**
  *
@@ -13,7 +14,11 @@ object PackageUtil {
     }
 
     fun getVersionCode(context: Context): Long {
-        val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
-        return packageInfo.longVersionCode
+        var packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            return packageInfo.longVersionCode
+        } else {
+            return packageInfo.versionCode.toLong()
+        }
     }
 }

@@ -1,7 +1,16 @@
+import java.text.SimpleDateFormat
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'org.greenrobot.greendao'
+
+def genBuildNumber() {
+    def df = new SimpleDateFormat("yyMMddHH")
+    df.setTimeZone(TimeZone.getTimeZone("UTC"))
+    def c = Calendar.getInstance()
+    return Integer.valueOf(df.format(c.getTime()))
+}
 
 android {
     compileSdkVersion 28
@@ -10,8 +19,8 @@ android {
         applicationId "com.latitude.seventimer"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode genBuildNumber()
+        versionName "1.0.0"
 
         File file = rootProject.file('local.properties')
         Properties localProperties = new Properties()

@@ -11,6 +11,7 @@ public interface WeatherContract {
     interface IView extends BaseContract.IView {
         void refreshLocationInfo(WeatherLocation address);
         void refreshWeather(AstroWeatherCluster cluster);
+        void showProgressbar(boolean isShow);
     }
 
     interface IPresenter<T> extends BaseContract.IPresenter<T> {
