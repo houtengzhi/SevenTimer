@@ -1,5 +1,6 @@
 package com.latitude.seventimer.ui.weather;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -18,6 +19,11 @@ public class MainActivity extends BaseActivity implements NavigationDrawerFragme
 
     private WeatherLocation selectedAddress;
     private NavigationDrawerFragment mNavigationDrawerFragment;
+
+    public static void actionStart(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInsatnceState) {
