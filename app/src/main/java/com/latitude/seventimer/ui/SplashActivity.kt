@@ -20,6 +20,11 @@ class SplashActivity: BaseActivity() {
 
     override fun onStart() {
         super.onStart()
-        Handler().postDelayed(object: Runnable {  }, 1000)
+        Handler().postDelayed(object: Runnable {
+            override fun run() {
+                MainActivity.actionStart(this@SplashActivity)
+                finish()
+            }
+        }, 1000)
     }
 }
