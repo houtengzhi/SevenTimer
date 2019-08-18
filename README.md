@@ -1,5 +1,5 @@
 # SevenTimer
-SevenTimer是一款Android端的开源天气APP, 目前仅支持晴天钟天气预测产品，该项目还在继续开发中。
+SevenTimer是一款开源的Android端天气APP，主要用于天文观测。目前仅支持晴天钟天气预测产品，该项目还在继续开发中。
 
 # 架构
 该项目基于MVP架构，以Material Design为设计风格。
@@ -10,7 +10,9 @@ SevenTimer是一款Android端的开源天气APP, 目前仅支持晴天钟天气�
 * 在Presenter基类中实现Rxjava2订阅的管理
 * 使用RxCache做API接口数据缓存
 * 使用Google对象关系映射库Room实现持久化存储
-* 使用RxPermission实现权限管理
+* 使用RxPermission实现Android6.0权限适配
+* 使用[StatusBarCompat](https://github.com/niorgai/StatusBarCompat)实现沉浸式状态栏
+* 使用[SwipeRecyclerView](https://github.com/yanzhenjie/SwipeRecyclerView)实现RecyclerView滑动删除Item
 * 调试工具采用了Pandora
 
 ### 包结构
@@ -32,8 +34,20 @@ SevenTimer是一款Android端的开源天气APP, 目前仅支持晴天钟天气�
 
 # 截图
 
-<img src="screenshots/7timer_01.png" width="30%"/>
-<img src="screenshots/7timer_02.png" width="30%"/>
+<img src="screenshots/7timer_01.png" width="25%"/>
+<img src="screenshots/7timer_02.png" width="25%"/>
+
+# 编译
+该项目使用百度地图SDK获取地理编码信息，编译时需在`local.properties`文件中添加
+
+```Java
+  BAIDU_MAP_AK=xxxxxxxxxxxxxxxxxxx
+```
+
+`BAIDU_MAP_AK`在[百度地图开发平台](http://lbsyun.baidu.com/index.php?title=androidsdk/guide/create-project/ak)申请获得。
+
+# 致谢
+* [晴天钟](http://www.7timer.info/index.php?lang=zh-CN)
 
 # 开源协议 [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
