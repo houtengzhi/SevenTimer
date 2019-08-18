@@ -1,5 +1,8 @@
 package com.latitude.seventimer.model.http.api;
 
+import com.latitude.seventimer.model.AstroWeatherBinder;
+import com.latitude.seventimer.model.http.AstroWeatherResponse;
+
 import java.util.Map;
 
 import io.reactivex.Flowable;
@@ -17,5 +20,5 @@ public interface SevenTimerApi {
     Flowable<ResponseBody> fetchLocationInfo(@Query("latlng") String latlng, @Query("sensor") String sensor);
 
     @GET("bin/astro.php")
-    Flowable<ResponseBody> fetchSevenTimerData(@QueryMap Map<String, String> map);
+    Flowable<AstroWeatherResponse> fetchSevenTimerData(@QueryMap Map<String, String> map);
 }

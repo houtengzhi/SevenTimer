@@ -1,21 +1,23 @@
 package com.latitude.seventimer.model;
 
+import com.latitude.seventimer.model.http.ApiResponse;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by yechy on 2015/9/6.
  */
-public class AstroWeatherCluster {
+public class AstroWeatherBinder {
     private List<AstroWeather> astroWeatherList = new ArrayList<>();
     private int timeZone;
     private String updateTime;
 
-    public AstroWeatherCluster() {
+    public AstroWeatherBinder() {
 
     }
 
-    public AstroWeatherCluster(List<AstroWeather> astroWeatherList, int timeZone, String updateTime) {
+    public AstroWeatherBinder(List<AstroWeather> astroWeatherList, int timeZone, String updateTime) {
         this.astroWeatherList = astroWeatherList;
         this.timeZone = timeZone;
         this.updateTime = updateTime;

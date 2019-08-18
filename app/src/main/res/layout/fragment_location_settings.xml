@@ -5,31 +5,44 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.appcompat.widget.Toolbar
-        style="@style/ToolbarTheme"
         android:id="@+id/toolbar_location_settings"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="?android:attr/actionBarSize"
         android:focusable="true"
         android:focusableInTouchMode="true"
+        android:elevation="4dp"
+        android:background="@color/white"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <com.latitude.seventimer.widget.ClearableTextInputEditText
             android:id="@+id/edit_text_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:hint="Input Address"/>
+            android:hint="Input Address"
+            android:layout_marginEnd="10dp"/>
 
     </androidx.appcompat.widget.Toolbar>
 
-    <com.yanzhenjie.recyclerview.SwipeRecyclerView
-        android:id="@+id/recycler_location"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@id/toolbar_location_settings"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-    </com.yanzhenjie.recyclerview.SwipeRecyclerView>
+        <com.yanzhenjie.recyclerview.SwipeRecyclerView
+            android:id="@+id/recycler_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </com.yanzhenjie.recyclerview.SwipeRecyclerView>
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

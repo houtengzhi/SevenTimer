@@ -3,7 +3,7 @@ package com.latitude.seventimer.util;
 import com.latitude.seventimer.R;
 import com.latitude.seventimer.model.database.WeatherLocation;
 import com.latitude.seventimer.model.AstroWeather;
-import com.latitude.seventimer.model.AstroWeatherCluster;
+import com.latitude.seventimer.model.AstroWeatherBinder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,6 +24,8 @@ import java.util.StringTokenizer;
  */
 public class DataParserUtil {
 
+    private static final String TAG = "DataParserUtil";
+
     public static WeatherLocation parseLocation(String response, float latitude, float longitude) {
         WeatherLocation location = null;
         try {
@@ -34,7 +36,7 @@ public class DataParserUtil {
                 String address_name = subObject.getString("formatted_address");
                 StringTokenizer tokenizer = new StringTokenizer(address_name);
                 address_name = tokenizer.nextToken();
-                location = new WeatherLocation(address_name, R.drawable.weather1,
+                location = new WeatherLocation(address_name, R.drawable.ic_sunny,
                         latitude, longitude);
 
             }
@@ -44,8 +46,9 @@ public class DataParserUtil {
         return location;
     }
 
-    public static AstroWeatherCluster parseAstroWeather(String response, float latitude, float longitude) {
-        AstroWeatherCluster astroWeatherCluster = null;
+    public static AstroWeatherBinder parseAstroWeather(String response, float latitude, float longitude) {
+        L.d(TAG, "parseAstroWeather(), response=%s", response);
+        AstroWeatherBinder astroWeatherBinder = null;
         List<AstroWeather> astroWeatheList2 = new ArrayList<AstroWeather>();
         //由longitude算所在时区
         int timeZone;
@@ -175,7 +178,7 @@ public class DataParserUtil {
                 astroWeatheList2.add(astroWeather);
             }
 
-            astroWeatherCluster = new AstroWeatherCluster(astroWeatheList2, timeZone,
+            astroWeatherBinder = new AstroWeatherBinder(astroWeatheList2, timeZone,
                     updateTime);
 
         } catch (JSONException e ) {
@@ -183,6 +186,6 @@ public class DataParserUtil {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return astroWeatherCluster;
+        return astroWeatherBinder;
     }
 }

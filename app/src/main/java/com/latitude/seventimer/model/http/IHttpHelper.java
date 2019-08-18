@@ -1,7 +1,7 @@
 package com.latitude.seventimer.model.http;
 
 import com.latitude.seventimer.model.database.WeatherLocation;
-import com.latitude.seventimer.model.AstroWeatherCluster;
+import com.latitude.seventimer.model.AstroWeatherBinder;
 
 import io.reactivex.Flowable;
 
@@ -13,5 +13,5 @@ public interface IHttpHelper {
 
     Flowable<WeatherLocation> fetchLocationInfo(float latitude, float longitude);
 
-    Flowable<AstroWeatherCluster> fetchAstroWeather(float latitude, float longitude);
+    Flowable<AstroWeatherBinder> fetchAstroWeather(float latitude, float longitude);
 }

@@ -10,6 +10,7 @@ import com.latitude.seventimer.model.IDataHelper;
 import com.latitude.seventimer.model.database.AppDatabase;
 import com.latitude.seventimer.model.database.DbHelper;
 import com.latitude.seventimer.model.database.IDbHelper;
+import com.latitude.seventimer.model.http.CacheProviders;
 import com.latitude.seventimer.model.http.IHttpHelper;
 import com.latitude.seventimer.model.http.RetrofitHelper;
 import com.latitude.seventimer.model.http.api.SevenTimerApi;
@@ -44,8 +45,8 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    public IHttpHelper provideRetrofitHelper(SevenTimerApi sevenTimerApi) {
-        return new RetrofitHelper(sevenTimerApi);
+    public IHttpHelper provideRetrofitHelper(SevenTimerApi sevenTimerApi, CacheProviders cacheProviders) {
+        return new RetrofitHelper(sevenTimerApi, cacheProviders);
     }
 
     @Provides

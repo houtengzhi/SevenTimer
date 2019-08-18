@@ -19,7 +19,7 @@ import android.widget.Toast;
 import com.latitude.seventimer.R;
 import com.latitude.seventimer.base.BaseRVFragment;
 import com.latitude.seventimer.model.database.WeatherLocation;
-import com.latitude.seventimer.model.AstroWeatherCluster;
+import com.latitude.seventimer.model.AstroWeatherBinder;
 import com.latitude.seventimer.ui.about.AboutActivity;
 import com.latitude.seventimer.ui.location.LocationActivity;
 import com.latitude.seventimer.util.AppDefs;
@@ -142,7 +142,7 @@ public class WeatherFragment extends BaseRVFragment<WeatherPresenter> implements
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mPresenter.fetchAstroWeather(mSelectedLocation.getLatitude(), mSelectedLocation.getLongitude());
+                mPresenter.fetchAstroWeather(mSelectedLocation.getLatitude(), mSelectedLocation.getLongitude(), false);
             }
         });
     }
@@ -205,7 +205,7 @@ public class WeatherFragment extends BaseRVFragment<WeatherPresenter> implements
                                 setSelectedLocation(new WeatherLocation(1, (float) location.getLatitude(),
                                         (float) location.getLongitude()));
                             }
-                            mPresenter.fetchAstroWeather((float) location.getLatitude(), (float) location.getLongitude());
+                            mPresenter.fetchAstroWeather((float) location.getLatitude(), (float) location.getLongitude(), true);
                             mPresenter.fetchLocationInfo(mSelectedLocation);
                         }
                     }
@@ -230,7 +230,7 @@ public class WeatherFragment extends BaseRVFragment<WeatherPresenter> implements
                 if (resultCode == RESULT_OK) {
                     WeatherLocation location = data.getParcelableExtra("selected_location");
                     refreshLocationInfo(location);
-                    mPresenter.fetchAstroWeather(location.getLatitude(), location.getLongitude());
+                    mPresenter.fetchAstroWeather(location.getLatitude(), location.getLongitude(), true);
                 }
                 break;
             default:
@@ -251,7 +251,7 @@ public class WeatherFragment extends BaseRVFragment<WeatherPresenter> implements
     }
 
     @Override
-    public void refreshWeather(AstroWeatherCluster cluster) {
+    public void refreshWeather(AstroWeatherBinder cluster) {
         mRefreshLayout.setRefreshing(false);
         mWeatherAdapter.setData(cluster.getList());
         mWeatherAdapter.notifyDataSetChanged();

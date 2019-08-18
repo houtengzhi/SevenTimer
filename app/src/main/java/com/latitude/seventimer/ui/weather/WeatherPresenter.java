@@ -3,7 +3,7 @@ package com.latitude.seventimer.ui.weather;
 import com.latitude.seventimer.base.RxPresenter;
 
 import com.latitude.seventimer.model.database.WeatherLocation;
-import com.latitude.seventimer.model.AstroWeatherCluster;
+import com.latitude.seventimer.model.AstroWeatherBinder;
 import com.latitude.seventimer.model.IDataHelper;
 import com.latitude.seventimer.util.L;
 
@@ -69,14 +69,14 @@ public class WeatherPresenter extends RxPresenter<WeatherContract.IView>
     }
 
     @Override
-    public void fetchAstroWeather(float latitude, float longitude) {
+    public void fetchAstroWeather(float latitude, float longitude, boolean showProgressbar) {
         Disposable disposable = mDataHelper.fetchAstroWeather(latitude, longitude)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Consumer<Subscription>() {
                     @Override
                     public void accept(Subscription subscription) throws Exception {
-                        mView.showProgressbar(true);
+                        mView.showProgressbar(showProgressbar);
                     }
                 })
                 .doFinally(new Action() {
@@ -85,9 +85,9 @@ public class WeatherPresenter extends RxPresenter<WeatherContract.IView>
                         mView.showProgressbar(false);
                     }
                 })
-                .subscribe(new Consumer<AstroWeatherCluster>() {
+                .subscribe(new Consumer<AstroWeatherBinder>() {
                     @Override
-                    public void accept(AstroWeatherCluster astroWeatherCluster) throws Exception {
+                    public void accept(AstroWeatherBinder astroWeatherCluster) throws Exception {
                         mView.refreshWeather(astroWeatherCluster);
                     }
                 }, new Consumer<Throwable>() {

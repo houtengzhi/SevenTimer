@@ -29,7 +29,9 @@ ext {
             'room-rxjava2'        :     'androidx.room:room-rxjava2:2.1.0',
 
             //rx
-            'rxpermission' : 'com.github.tbruyelle:rxpermissions:0.10.2',
+            'rxpermission'        :     'com.github.tbruyelle:rxpermissions:0.10.2',
+            'rxcache'             :     'com.github.VictorAlbertos.RxCache:runtime:1.8.3-2.x',
+            'jolyglot-gson'       :     'com.github.VictorAlbertos.Jolyglot:gson:0.0.4',
 
             //mta
             'mta' : 'com.qq.mta:mta:3.4.7-release',

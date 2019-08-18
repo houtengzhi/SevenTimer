@@ -38,6 +38,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
     @Override
     public void onBindViewHolder(@NonNull LocationViewHolder locationViewHolder, int i) {
         WeatherLocation location = mDatas.get(i);
+        locationViewHolder.temp.setText("30 ℃");
         locationViewHolder.title.setText(location.getAddress());
 
     }

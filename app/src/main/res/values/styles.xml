@@ -11,6 +11,11 @@
     <style name="ToolbarTheme" parent="AppTheme">
         <item name="android:background">@color/mxColorPrimary</item>
     </style>
+    
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:background">@drawable/splash_background</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
 
     <style name="LeftDrawerArrowStyle" parent="AppTheme">
     </style>

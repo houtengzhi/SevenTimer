@@ -1,7 +1,7 @@
 package com.latitude.seventimer.model.http;
 
 import com.latitude.seventimer.model.database.WeatherLocation;
-import com.latitude.seventimer.model.AstroWeatherCluster;
+import com.latitude.seventimer.model.AstroWeatherBinder;
 import com.latitude.seventimer.model.http.api.SevenTimerApi;
 import com.latitude.seventimer.util.DataParserUtil;
 import com.latitude.seventimer.util.L;
@@ -22,8 +22,11 @@ public class RetrofitHelper implements IHttpHelper {
     private static final String TAG = Retrofit.class.getSimpleName();
     private SevenTimerApi mSevenTimerApi;
 
-    public RetrofitHelper(SevenTimerApi sevenTimerApi) {
+    private CacheProviders mCacheProviders;
+
+    public RetrofitHelper(SevenTimerApi sevenTimerApi, CacheProviders cacheProviders) {
         this.mSevenTimerApi = sevenTimerApi;
+        this.mCacheProviders = cacheProviders;
     }
 
     @Override
@@ -46,25 +49,19 @@ public class RetrofitHelper implements IHttpHelper {
     }
 
     @Override
-    public Flowable<AstroWeatherCluster> fetchAstroWeather(final float latitude, final float longitude) {
+    public Flowable<AstroWeatherBinder> fetchAstroWeather(final float latitude, final float longitude) {
         L.d(TAG, "fetchAstroWeather(), latitude:%s, longitude:%s", latitude, longitude);
         Map<String, String> map = createQuestMap(latitude, longitude);
-        return mSevenTimerApi.fetchSevenTimerData(map)
-                .map(new Function<ResponseBody, AstroWeatherCluster>() {
-                    @Override
-                    public AstroWeatherCluster apply(ResponseBody responseBody) {
-                        try {
-                            String response = responseBody.string();
-                            L.v(TAG, "fetchAstroWeather(), response:%s", response);
-                            return DataParserUtil.parseAstroWeather(response, latitude, longitude);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        } finally {
-                            responseBody.close();
-                        }
-                        return null;
-                    }
-                });
+        return mCacheProviders.fetchSevenTimerData(mSevenTimerApi.fetchSevenTimerData(map))
+               .map(new Function<AstroWeatherResponse, AstroWeatherBinder>() {
+                   @Override
+                   public AstroWeatherBinder apply(AstroWeatherResponse astroWeatherResponse) throws Exception {
+                       if (astroWeatherResponse.isDataValid()) {
+                           return astroWeatherResponse.getData();
+                       }
+                       return null;
+                   }
+               });
     }
 
     private Map<String, String> createQuestMap(float latitude, float longitude) {

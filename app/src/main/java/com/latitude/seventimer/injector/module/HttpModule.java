@@ -4,6 +4,7 @@ package com.latitude.seventimer.injector.module;
 import android.util.Log;
 
 import com.latitude.seventimer.App;
+import com.latitude.seventimer.model.http.STConverterFactory;
 import com.latitude.seventimer.model.http.api.SevenTimerApi;
 import com.latitude.seventimer.support.exception.CustomException;
 import com.latitude.seventimer.support.exception.ExceptionCode;
@@ -41,7 +42,8 @@ public class HttpModule {
     @Singleton
     @Provides
     SevenTimerApi provideSevenTimerApi(Retrofit.Builder builder, OkHttpClient client) {
-        return createRetrofit(builder, client, ConstantConfig.SEVEN_TIMER_DOMAIN, null)
+        return createRetrofit(builder, client, ConstantConfig.SEVEN_TIMER_DOMAIN,
+                STConverterFactory.create())
                 .create(SevenTimerApi.class);
     }
 

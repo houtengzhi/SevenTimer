@@ -14,7 +14,7 @@ import io.reactivex.Single;
 public interface IDataHelper {
     public Flowable<WeatherLocation> fetchLocationInfo(float latitude, float longitude);
 
-    public Flowable<AstroWeatherCluster> fetchAstroWeather(float latitude, float longitude);
+    public Flowable<AstroWeatherBinder> fetchAstroWeather(float latitude, float longitude);
 
 
     //--------------------------------------- Map -----------------------------------------

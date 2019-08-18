@@ -35,7 +35,7 @@ public class DataHelper implements IDataHelper {
     }
 
     @Override
-    public Flowable<AstroWeatherCluster> fetchAstroWeather(float latitude, float longitude) {
+    public Flowable<AstroWeatherBinder> fetchAstroWeather(float latitude, float longitude) {
         return mHttpHelper.fetchAstroWeather(latitude, longitude);
     }
 
